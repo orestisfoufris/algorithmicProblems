@@ -15,10 +15,7 @@ public class FibonacciDiv2 {
         int last = (fibs.get(fibs.size() -1)) - N;
         int prev = N - (fibs.get(fibs.size() -2));
 
-        if(last < prev){
-            return last;
-        }
-        return prev;
+        return Math.min(last, prev);
     }
 
     private List<Integer> fib(int n){
