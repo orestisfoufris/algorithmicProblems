@@ -10,7 +10,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by sweetleaf on 11/10/2014
+ * Created by Orestis on 11/10/2014
  */
 public class RandomOneTest {
     private RandomOne randomOne = new RandomOne();

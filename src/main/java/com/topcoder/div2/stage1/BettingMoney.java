@@ -3,7 +3,7 @@ package com.topcoder.div2.stage1;
 import com.google.common.base.Stopwatch;
 
 /**
- * Created by sweetleaf on 16/09/2014
+ * Created by Orestis on 16/09/2014
  * http://community.topcoder.com/stat?c=problem_statement&pm=2297&rd=4775&rm=&cr=8532153
  */
 

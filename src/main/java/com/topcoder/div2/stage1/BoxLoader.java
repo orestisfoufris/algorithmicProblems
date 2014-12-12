@@ -1,7 +1,7 @@
 package com.topcoder.div2.stage1;
 
 /**
- * Created by sweetleaf on 17/09/2014
+ * Created by Orestis on 17/09/2014
  * http://community.topcoder.com/stat?c=problem_statement&pm=2403&rd=4780&rm=150835&cr=8472634
  */
 public class BoxLoader {

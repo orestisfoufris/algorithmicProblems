@@ -55,23 +55,4 @@ public class TwoWaysSorting {
         }
         return result;
     }
-
-    // winning solution
-//    public String sortingMethod(String[] stringList) {
-//
-//        boolean len = true;
-//        boolean lex = true;
-//
-//        for(int i = 0; i < stringList.length; ++i) {
-//            for(int j = i + 1; j < stringList.length; ++j) {
-//                len &= ( stringList[i].length() < stringList[j].length());
-//                lex &= ( stringList[i].compareTo(stringList[j]) < 0);
-//            }
-//        }
-//        if(len && lex) return "both";
-//        if(len) return "lengths";
-//        if(lex) return "lexicographically";
-//        return "none";
-//    }
-
 }

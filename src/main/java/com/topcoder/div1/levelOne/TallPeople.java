@@ -5,7 +5,7 @@ import java.util.*;
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
- * Created by sweetleaf on 27/09/2014.
+ * Created by Orestis on 27/09/2014.
  * http://community.topcoder.com/stat?c=problem_statement&pm=2923&rd=5854
  */
 public class TallPeople {
@@ -51,10 +51,6 @@ public class TallPeople {
             }
             max = Math.min(max, x[i]);
         }
-
-//        for(int[] ar : matrix){
-//           System.out.println(Arrays.toString(ar));
-//      }
         return new int[] {min, max};
     }
 }
