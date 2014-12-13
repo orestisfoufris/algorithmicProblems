@@ -5,11 +5,14 @@ package algorithms.sorting;
  */
 public class MergeSort {
 
-    // TODO: implement merge-sort algo
-    private int[] merge(int[] leftArray, int[] rightArray){
-        int leftPointer = 0;
-        int rightPointer = 0;
+    private static Comparable[] temp; // space for the sorted output to be stored
 
-        return new int[0];
+    public static void sort(Comparable[] array){
+        // TODO: implement sort
     }
+
+    public static void merge(Comparable[] array, int low, int mid, int high) {
+        // TODO: implement merge
+    }
+
 }
