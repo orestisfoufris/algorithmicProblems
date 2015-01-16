@@ -22,10 +22,10 @@ public class InsertionSortTest {
 
     @Test
     public void sort2(){
-        int[] given = {9,9,9,9,9,9,9,9,9};
-        int[] expected = {9,9,9,9,9,9,9,9,9};
+        int[] given = {8,7,6,5,4};
+        int[] expected = {4,5,6,7,8};
         InsertionSort.sortArray(given);
-        assertEquals(Arrays.toString(expected), (Arrays.toString(given)));
+        assertEquals(Arrays.toString(given), (Arrays.toString(expected)));
     }
 
     @Test

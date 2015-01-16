@@ -17,15 +17,15 @@ public class BubbleSortTest {
         int[] given = {5,4,8,9,10,66,22,5};
         int[] expected = {4,5,5,8,9,10,22,66};
         BubbleSort.sortArray(given);
-        assertEquals(Arrays.toString(expected), Arrays.toString(given));
+        assertEquals(Arrays.toString(given), Arrays.toString(expected));
     }
 
     @Test
     public void sort2(){
-        int[] given = {9,9,9,9,9,9,9,9,9};
-        int[] expected = {9,9,9,9,9,9,9,9,9};
+        int[] given = {8,7,6,5,4};
+        int[] expected = {4,5,6,7,8};
         BubbleSort.sortArray(given);
-        assertEquals(Arrays.toString(expected), (Arrays.toString(given)));
+        assertEquals(Arrays.toString(given), (Arrays.toString(expected)));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class BubbleSortTest {
         int[] given = {100,8,44,21,96,85,55,44,1};
         int[] expected = {1,8,21,44,44,55,85,96,100};
         BubbleSort.sortArray(given);
-        assertEquals(Arrays.toString(expected), (Arrays.toString(given)));
+        assertEquals(Arrays.toString(given), (Arrays.toString(expected)));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class BubbleSortTest {
         int[] given = {10,9,8,7,6,5,4,3,2,1,0};
         int[] expected = {0,1,2,3,4,5,6,7,8,9,10};
         BubbleSort.sortArray(given);
-        assertEquals(Arrays.toString(expected), (Arrays.toString(given)));
+        assertEquals(Arrays.toString(given), (Arrays.toString(expected)));
     }
 }
