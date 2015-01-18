@@ -1,6 +1,5 @@
 package algorithms.sorting;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -45,6 +44,5 @@ public final class MergeSort {
             else if (((Comparable)temp[j]).compareTo(temp[i]) <= -1) a[k] = temp[j++];
             else a[k] = temp[i++];
         }
-        System.out.println(Arrays.toString(a));
     }
 }
