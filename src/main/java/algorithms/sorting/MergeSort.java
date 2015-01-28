@@ -7,7 +7,7 @@ import java.util.ListIterator;
  * Created by Orestis on 07/12/2014
  */
 public final class MergeSort {
-
+    //TODO: needs refactoring
     private MergeSort() {
         // prevent instantiation
     }
