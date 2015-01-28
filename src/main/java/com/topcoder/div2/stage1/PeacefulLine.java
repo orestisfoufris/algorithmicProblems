@@ -16,7 +16,7 @@ public class PeacefulLine {
             }
             max = Math.max(max, count);
         }
-        if((max * 2) - 1 <= x.length){
+        if((max * 2) - 1 < x.length){
             return "Possible";
         }
         return "Impossible";
