@@ -1,4 +1,4 @@
-package com.topcoder.div2.stage1;
+package com.topcoder.div2.levelOne;
 
 /**
  * Created by Orestis on 28/01/2015

@@ -1,4 +1,4 @@
-package com.topcoder.div2.stage1;
+package com.topcoder.div2.levelOne;
 
 import com.google.common.base.Stopwatch;
 
