@@ -1,4 +1,4 @@
-package algorithms.sorting.algorithms.searching;
+package algorithms.searching;
 
 import datastructures.graphs.SimpleAdjacencyList;
 import datastructures.graphs.Vertex;
