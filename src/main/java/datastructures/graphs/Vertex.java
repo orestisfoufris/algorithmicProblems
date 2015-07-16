@@ -1,4 +1,4 @@
-package ds.graphs;
+package datastructures.graphs;
 
 
 public final class Vertex {

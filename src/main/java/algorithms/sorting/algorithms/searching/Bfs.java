@@ -1,8 +1,8 @@
-package ds.graphs.search;
+package algorithms.sorting.algorithms.searching;
 
-import ds.graphs.SimpleAdjacencyList;
-import ds.graphs.Vertex;
-import ds.graphs.VertexColor;
+import datastructures.graphs.SimpleAdjacencyList;
+import datastructures.graphs.Vertex;
+import datastructures.graphs.VertexColor;
 
 import java.util.*;
 

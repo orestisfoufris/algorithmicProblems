@@ -1,4 +1,4 @@
-package ds.graphs;
+package datastructures.graphs;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
