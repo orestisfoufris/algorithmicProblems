@@ -1,7 +1,6 @@
 package com.topcoder.div2.levelThree;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import static com.google.common.collect.Maps.newHashMap;

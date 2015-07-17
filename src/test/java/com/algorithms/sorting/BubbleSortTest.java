@@ -1,4 +1,4 @@
-package com.topcoder.algorithms.sorting;
+package com.algorithms.sorting;
 
 import algorithms.sorting.BubbleSort;
 import org.testng.annotations.Test;
