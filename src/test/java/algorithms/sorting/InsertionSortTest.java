@@ -1,6 +1,5 @@
-package com.algorithms.sorting;
+package algorithms.sorting;
 
-import algorithms.sorting.InsertionSort;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
