@@ -50,7 +50,7 @@ public class HeapSort {
 
     /**
      *
-     * This function goes the remaining nodes of the heap tree and
+     * This function goes through the remaining nodes of the heap tree and
      * runs maxHeapify on each one.
      */
     private static <T extends Comparable<? super T>> void buildMaxHeap(List<T> list, int heapSize) {
