@@ -80,4 +80,20 @@ public class IsItASquareTest {
 
         assertEquals(IsItASquare.isSquare(x, y), "It's a square");
     }
+
+    @Test
+    public void test10() {
+        int[] x = {0, 5, 3, 8};
+        int[] y = {0, 0, 4, 4};
+
+        assertEquals(IsItASquare.isSquare(x, y), "Not a square");
+    }
+
+    @Test
+    public void test11() {
+        int[] x = {8, 14, 12, 10};
+        int[] y = {14, 12, 16, 10};
+
+        assertEquals(IsItASquare.isSquare(x, y), "It's a square");
+    }
 }
