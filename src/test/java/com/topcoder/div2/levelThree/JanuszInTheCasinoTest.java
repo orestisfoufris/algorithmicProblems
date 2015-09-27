@@ -22,7 +22,6 @@ public class JanuszInTheCasinoTest {
         double expected = 1.0;
         double actual = j.findProbability(1000000000000L, 3, 50);
 
-        System.out.println(actual);
         assertTrue(Math.abs(actual - expected) <= 0.001);
     }
 
@@ -31,7 +30,6 @@ public class JanuszInTheCasinoTest {
         double expected = 0.012293671817445784;
         double actual = j.findProbability(432545123543L, 2, 45);
 
-        System.out.println(actual);
         assertTrue(Math.abs(actual - expected) <= 0.001);
     }
 
@@ -40,7 +38,6 @@ public class JanuszInTheCasinoTest {
         double expected = 1.0;
         double actual = j.findProbability(4, 3, 2);
 
-        System.out.println(actual);
         assertTrue(Math.abs(actual - expected) <= 0.001);
     }
 
@@ -49,7 +46,6 @@ public class JanuszInTheCasinoTest {
         double expected = 0.75;
         double actual = j.findProbability(3, 2, 2);
 
-        System.out.println(actual);
         assertTrue(Math.abs(actual - expected) <= 0.001);
     }
 
