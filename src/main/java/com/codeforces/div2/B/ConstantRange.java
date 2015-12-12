@@ -1,9 +1,7 @@
 package com.codeforces.div2.B;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 
 /**
  * @author Orestis
@@ -12,40 +10,42 @@ import java.util.List;
 public class ConstantRange {
 
 
-    private static int findMaxLength (List<Integer> dataPoints, int start, int finish) {
+    private static int findMaxLength (int[] dataPoints, int[] aux, int n) {
+        int left = 1;
         int result = 0;
 
-        if (start >= finish) {
-            return 0;
-        }
+        for (int i = 1; i <= n; ++i) {
+            int point = dataPoints[i];
 
-        int max = 0;
-        int min = Integer.MAX_VALUE;
-
-        for (int i = start; i <= finish; i++) {
-            max = Math.max(max, dataPoints.get(i));
-            min = Math.min(min, dataPoints.get(i));
-
-            if ( max - min <= 1) {
-                result += 1;
+            if (point - 2 > 0){
+                left = Math.max(left, aux[point - 2] + 1);
             }
+
+            if (point + 2 <= 100000) {
+                left = Math.max(left, aux[point + 2] + 1);
+            }
+
+            aux[point] = i;
+            result = Math.max(result, i - left + 1);
         }
 
-        return Math.max(result, findMaxLength(dataPoints, start + 1, finish));
+        return result;
     }
 
     public static void main(String[] args) {
         InputReader inputReader = new InputReader(System.in);
         OutputWriter outputWriter = new OutputWriter(System.out);
 
-        List<Integer> dataPoints = new ArrayList<>();
+        int[] dataPoints = new int[100005];
+        int[] aux = new int[100005];
+
         int numberOfDataPoints = inputReader.readInt();
 
-        for (int i = 0; i < numberOfDataPoints; i++) {
-            dataPoints.add(inputReader.readInt());
+        for (int i = 1; i <= numberOfDataPoints; ++i) {
+            dataPoints[i] = inputReader.readInt();
         }
 
-        outputWriter.print(findMaxLength(dataPoints, 0, dataPoints.size() - 1));
+        outputWriter.print(findMaxLength(dataPoints, aux, numberOfDataPoints));
         outputWriter.close();
     }
 
