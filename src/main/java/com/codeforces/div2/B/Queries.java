@@ -9,47 +9,30 @@ import java.util.InputMismatchException;
  */
 public class Queries {
 
-    private static int solve(int[] n, int m, int start, int finish) {
+    private static int solve(int[] n, int x, int start, int finish) {
 
-        if (finish - start == 1 || finish - start == 0) {
-            int res = 0;
-
-            if (m >= n[finish]) {
-                for (int i = finish; i < n.length; i++) {
-                    if (m >= n[i]) {
-                        res = res + 1;
-                    } else {
-                        break;
-                    }
-                }
-                return finish + res;
-
-            } else if (m > n[start]) {
-                return finish;
-            } else {
-                for (int i = start; i > 0; i--) {
-                    if (m == n[i]) {
-                        res = res + 1;
-                    } else {
-                        break;
-                    }
-                }
-                return start + res;
-            }
+        if (x < n[0]) {
+            return 0;
         }
 
-        int s = (start + finish) / 2;
-        int middle = n[s];
-        int res;
-        if (m > middle) {
-            // go right
-            res = solve(n, m, s, s + 1);
+        if (start + 1 == finish) {
+            return start + 1;
+        }
+
+        int middle = (start + finish) / 2;
+
+        if (n[middle] > x) {
+            finish = middle;
         } else {
-            // go left
-            res = solve(n, m, 0, s);
+            start = middle;
         }
 
-        return res;
+        if (finish + 1 == start) {
+            finish++;
+        }
+
+        return solve(n, x, start, finish);
+
     }
 
     public static void main(String[] args) {
@@ -71,12 +54,11 @@ public class Queries {
         Arrays.sort(n);
 
         for (int number : m) {
-            out.print(solve(n, number, 0, n.length - 1) + " ");
+            out.print(solve(n, number, 0, n.length) + " ");
         }
 
         out.close();
     }
-
 
     //FAST IO
     private static class InputReader
