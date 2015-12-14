@@ -1,4 +1,4 @@
-//package com.codeforces.div2.A;
+package com.codeforces.div2.A;
 
 import java.io.*;
 import java.util.InputMismatchException;
