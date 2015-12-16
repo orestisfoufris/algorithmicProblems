@@ -7,22 +7,33 @@ import java.util.InputMismatchException;
  * @author Orestis
  */
 public class MagicSpheres {
-    // TODO: fails on some cases, needs refactoring
+
     private static String solve(int[] given, int[] wanted) {
         int sum = 0;
         int sum_neg = 0;
 
-        for (int i= 0; i < 3; i++) {
-            int add = given[i] - wanted[i];
-            if (add < 0) {
-                sum_neg += add;
-            } else {
-                sum += add; //Math.max(sum, add);
-            }
+        int[] results = new int[3];
 
+        for (int i= 0; i < 3; i++) {
+            int val = given[i] - wanted[i];
+
+            if (val > 0) {
+                results[i] = val / 2;
+            } else {
+                results[i] = given[i] - wanted[i];
+            }
         }
-//        System.out.println(sum / 2 + sum_neg);
-        return (sum + (sum_neg * 2) >= 0) ? "Yes" : "No";
+
+        for (int i= 0; i < 3; i++) {
+            int val = results[i];
+            if (val > 0) {
+                sum += val;
+            } else {
+                sum_neg += val;
+            }
+        }
+
+        return (sum + sum_neg >= 0) ? "Yes" : "No";
     }
 
     public static void main(String[] args) {
