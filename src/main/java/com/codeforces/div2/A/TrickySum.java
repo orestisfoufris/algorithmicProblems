@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/598/A
  */
 
 public class TrickySum {
@@ -16,14 +17,25 @@ public class TrickySum {
         int t = in.readInt();
         for (int k = 0; k < t; k++) {
             int n = in.readInt();
-            long result = (long)(1 + n) * n / 2;
-            result -= (long)Math.pow(2, (int)(Math.log(n) / Math.log(2)) + 2) - 2;
+            long result = (long) (1 + n) * n / 2;
+            result -= (long) Math.pow(2, log2(n) + 2) - 2;
 
             out.print(result + "\n");
 
         }
 
         out.close();
+    }
+
+    public static int log2( int bits ) // returns 0 for bits = 0
+    {
+        int log = 0;
+        if( ( bits & 0xffff0000 ) != 0 ) { bits >>>= 16; log = 16; }
+        if( bits >= 256 ) { bits >>>= 8; log += 8; }
+        if( bits >= 16  ) { bits >>>= 4; log += 4; }
+        if( bits >= 4   ) { bits >>>= 2; log += 2; }
+
+        return log + ( bits >>> 1 );
     }
 
     //FAST IO
