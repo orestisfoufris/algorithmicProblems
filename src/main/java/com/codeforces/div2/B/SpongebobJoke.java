@@ -1,43 +1,18 @@
-package com.codeforces.div2.A;
+package com.codeforces.div2.B;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.InputMismatchException;
 
 /**
  * @author Orestis
- * Problem statement: http://codeforces.com/problemset/problem/609/A
  */
 
-public class USBFlashDrives {
-
-    private static int solve(Integer[] sizeOfDrives, int m) {
-        int result = 0;
-        int counter = m;
-        for (Integer sizeOfDrive : sizeOfDrives) {
-            if (counter > 0) {
-                result++;
-                counter -= sizeOfDrive;
-            }
-        }
-        return result;
-    }
+public class SpongebobJoke {
 
     public static void main(String[] args) {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
-        int n = in.readInt(); // number of USB drives
-        int m = in.readInt(); // size of file
-
-        Integer[] sizeOfDrives = new Integer[n];
-
-        for (int i = 0; i < n; i++) {
-            sizeOfDrives[i] = in.readInt();
-        }
-        Arrays.sort(sizeOfDrives,Collections.reverseOrder());
-        out.print(solve(sizeOfDrives, m));
 
         out.close();
     }
