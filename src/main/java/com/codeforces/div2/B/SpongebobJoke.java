@@ -1,22 +1,86 @@
 package com.codeforces.div2.B;
 
 import java.io.*;
-import java.util.InputMismatchException;
+import java.util.*;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/599/B
  */
 
 public class SpongebobJoke {
+
+    private static Pair solve(List<Integer> f, List<Integer> b) {
+        Map<Integer, Integer> fIndexes = new HashMap<>();
+        for (int i = 0; i < f.size(); i++) {
+            fIndexes.put(f.get(i), i + 1);
+        }
+
+        Map<Integer, Integer> mapping = new HashMap<>();
+        Map<Integer, Integer> res = new TreeMap<>();
+        String answer = "Possible";
+        for (int i = 0; i < b.size(); i++) {
+            if (mapping.containsKey(b.get(i))) {
+                Integer value = mapping.get(b.get(i));
+                if (value.equals(f.get(i))) {
+                    answer = "Ambiguity";
+                } else  {
+                    return new Pair("Impossible", null);
+                }
+            } else {
+                mapping.put(b.get(i), f.get(i));
+                res.put(b.get(i), fIndexes.get(b.get(i)));
+            }
+        }
+//        System.out.println("Result: " + res);
+//        System.out.println("F: " + fIndexes);
+        return new Pair(answer, res);
+    }
 
     public static void main(String[] args) {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
+        int n = in.readInt();
+        int m = in.readInt();
 
+        List<Integer> f = new ArrayList<>(n);
+        List<Integer> b = new ArrayList<>(m);
+
+        for (int i = 0; i < n; i++) {
+            f.add(in.readInt());
+        }
+
+        for (int i = 0; i < m; i++) {
+            b.add(in.readInt());
+        }
+
+        Pair result = solve(f, b);
+        out.print(result.answer + "\n");
+        if (Objects.equals(result.answer, "Possible")) {
+            StringBuilder sb = new StringBuilder();
+            for (Integer i : b) {
+                sb.append(result.sequence.get(i));
+                sb.append(" ");
+            }
+            out.print(sb.toString());
+        }
         out.close();
     }
 
+    private static class Pair {
+        public final String answer;
+        public final Map<Integer, Integer> sequence;
+
+        private Pair(String answer, Map<Integer, Integer> sequence) {
+            this.answer = answer;
+            this.sequence = sequence;
+        }
+    }
+//    10 9
+//    1 2 3 4 5 6 7 8 9 10
+//    10 9 8 7 6 5 4 3 2
+    
     //FAST IO
     private static class InputReader {
         private InputStream stream;
