@@ -11,29 +11,38 @@ import java.util.*;
 public class SpongebobJoke {
 
     private static Pair solve(List<Integer> f, List<Integer> b) {
+
         Map<Integer, Integer> fIndexes = new HashMap<>();
         for (int i = 0; i < f.size(); i++) {
             fIndexes.put(f.get(i), i + 1);
         }
 
-        Map<Integer, Integer> mapping = new HashMap<>();
         Map<Integer, Integer> res = new TreeMap<>();
         String answer = "Possible";
-        for (int i = 0; i < b.size(); i++) {
-            if (mapping.containsKey(b.get(i))) {
-                Integer value = mapping.get(b.get(i));
-                if (value.equals(f.get(i))) {
-                    answer = "Ambiguity";
-                } else  {
-                    return new Pair("Impossible", null);
-                }
+        for (Integer i : b) {
+            if (!fIndexes.containsKey(i)) {
+                return new Pair("Impossible", null);
             } else {
-                mapping.put(b.get(i), f.get(i));
-                res.put(b.get(i), fIndexes.get(b.get(i)));
+                res.put(i, fIndexes.get(i));
             }
         }
-//        System.out.println("Result: " + res);
-//        System.out.println("F: " + fIndexes);
+
+        Map<Integer, Integer> f_counter = new HashMap<>();
+        for (Integer i : f) {
+            if(f_counter.containsKey(i)) {
+                f_counter.put(i, f_counter.get(i) + 1);
+            }
+            else {
+                f_counter.put(i, 1);
+            }
+        }
+
+        for (Integer i : b) {
+            if (f_counter.get(i) > 1) {
+                answer = "Ambiguity";
+            }
+        }
+
         return new Pair(answer, res);
     }
 
@@ -77,10 +86,7 @@ public class SpongebobJoke {
             this.sequence = sequence;
         }
     }
-//    10 9
-//    1 2 3 4 5 6 7 8 9 10
-//    10 9 8 7 6 5 4 3 2
-    
+
     //FAST IO
     private static class InputReader {
         private InputStream stream;
