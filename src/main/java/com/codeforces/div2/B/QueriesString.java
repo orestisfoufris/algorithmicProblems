@@ -1,9 +1,7 @@
 package com.codeforces.div2.B;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 /**
  * @author Orestis
@@ -13,25 +11,8 @@ import java.util.Map;
 public class QueriesString {
 
     private static String solve(String s, int start, int end, int k) {
-        Map<Integer, Character> letters = new HashMap<>(s.length());
-
-        for (int i = 0; i < s.length(); i++) {
-            letters.put(i, s.charAt(i));
-        }
-
-        for (int j = 0; j < k; j++) {
-            for (int i = end - 1; i > start - 1; i--) {
-                char temp = letters.get(i);
-                letters.put(i, letters.get(i - 1));
-                letters.put(i - 1, temp);
-            }
-        }
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            sb.append(letters.get(i));
-        }
-        return sb.toString();
+        return s.substring(0, start - 1) + s.substring(end - k, end)
+                + s.substring(start - 1, end - k) + s.substring(end, s.length());
     }
 
     public static void main(String[] args) {
@@ -45,6 +26,7 @@ public class QueriesString {
             int start = in.readInt();
             int end = in.readInt();
             int k = in.readInt();
+            k = k % (end - start + 1);
 
             s = solve(s, start, end, k);
         }
