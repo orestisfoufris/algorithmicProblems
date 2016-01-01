@@ -1,26 +1,56 @@
-package com.codeforces.div2.A;
+package com.codeforces.div2.B;
 
 import java.io.*;
 import java.util.InputMismatchException;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/591/B
  */
 
-public class TwoChar {
+public class Rebranding {
 
     public static void main(String[] args) {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
+        int lenName = in.readInt();
+        int designers = in.readInt();
+        char[] letters = in.readString().toCharArray();
 
+        int[] l = new int[26];
+        int[] r = new int[26];
+        for (int i = 0; i < 26; i++) {
+            l[i] = i;
+            r[i] = i;
+        }
+
+        for (int i = 0; i < designers; i++) {
+            int x = in.readString().toCharArray()[0] - 'a';
+            int y = in.readString().toCharArray()[0] - 'a';
+
+            if (x != y) {
+                l[r[x]] = y;
+                l[r[y]] = x;
+
+                int xy = r[y];
+                r[y] = r[x];
+                r[x] = xy;
+            }
+        }
+
+        for (int i = 0; i < lenName; i++) {
+            letters[i] = (char) (l[letters[i] - 'a'] + 'a');
+        }
+
+        out.print(new String(letters));
         out.close();
     }
 
     //FAST IO
     private static class InputReader {
         private InputStream stream;
-        private byte[] buf = new byte[1024];
+        private byte[] buf = new byte[1<<10];
         private int curChar;
         private int numChars;
         private SpaceCharFilter filter;
