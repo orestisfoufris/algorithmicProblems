@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/593/B
  */
 
 public class AntonLines {
