@@ -11,7 +11,6 @@ import java.util.*;
 public class SnakesAndLadders {
 
     private static int solve(Map<Integer, List<Integer>> adjacentList) {
-        int count = 0;
         int[] parents = new int[110];
         int[] distances = new int[110];
         int[] seen = new int[110];
@@ -42,7 +41,10 @@ public class SnakesAndLadders {
             seen[vertex] = 3;
         }
 
-        return -1;
+        if (parents[100] == -1) {
+            return -1;
+        }
+        return distances[100] - 1;
     }
 
     public static void main(String[] args) {
@@ -79,7 +81,7 @@ public class SnakesAndLadders {
                 adjacentList.put(val, to);
             }
 
-            out.print(solve(adjacentList));
+            out.print(solve(adjacentList) + "\n");
         }
 
         out.close();
