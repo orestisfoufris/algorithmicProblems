@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/581/A
  */
 
 public class VasyaTheHipster {
