@@ -1,7 +1,6 @@
 package com.codeforces.div2.A;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 
 /**
@@ -16,23 +15,20 @@ public class WetSharkOddEven {
         OutputWriter out = new OutputWriter(System.out);
 
         int N = in.readInt();
-        long[] nums = new long[N];
         long result = 0;
+        long minOdd = Long.MAX_VALUE;
+
         for (int i = 0; i < N; ++i) {
             long num = in.readLong();
             result += num;
-            nums[i] = num;
+
+            if (num % 2 == 1) {
+                minOdd = Math.min(minOdd, num);
+            }
         }
 
-        Arrays.sort(nums);
-
         if(result % 2 != 0) {
-            for (int i = 0; i < N; ++i) {
-                if (nums[i] % 2 == 1) {
-                    result -= nums[i];
-                    break;
-                }
-            }
+            result -= minOdd;
         }
 
         out.print(result);
