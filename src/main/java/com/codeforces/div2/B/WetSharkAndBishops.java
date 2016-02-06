@@ -32,8 +32,8 @@ public class WetSharkAndBishops {
             int x = points.get(i).x;
             int y = points.get(i).y;
 
-            plus.put(x + y, plus.computeIfAbsent(x + y, key -> -1) + 1);
-            minus.put(x - y, minus.computeIfAbsent(x - y, key -> -1) + 1);
+            plus.put(x + y, plus.computeIfAbsent(x + y, key -> 0) + 1);
+            minus.put(x - y, minus.computeIfAbsent(x - y, key -> 0) + 1);
 
         }
 
@@ -47,7 +47,7 @@ public class WetSharkAndBishops {
 
     private static long add(int n) {
         long sum = 0;
-        for (int i = 0; i <= n; ++i) {
+        for (int i = 0; i < n; ++i) {
             sum += i;
         }
 
@@ -67,7 +67,7 @@ public class WetSharkAndBishops {
     //FAST IO
     private static class InputReader {
         private InputStream stream;
-        private byte[] buf = new byte[1024];
+        private byte[] buf = new byte[1 << 10];
         private int curChar;
         private int numChars;
         private SpaceCharFilter filter;
