@@ -6,9 +6,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 /**
- *  on 13/02/2016.
+ *  @author Orestis
+ *  https://www.hackerrank.com/challenges/stockmax
  */
-public class Max {
+public class StockMaximize {
 
     public static void main(String[] args) throws Exception{
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -29,7 +30,6 @@ public class Max {
 
             out.write(String.valueOf(profit) + "\n");
         }
-
 
         out.close();
     }
