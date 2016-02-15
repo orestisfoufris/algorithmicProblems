@@ -13,8 +13,49 @@ public class Woodcutters {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
+        int N = in.readInt();
+        int[] X = new int[N];
+        int[] H = new int[N];
+        int[] choices = new int[N]; // -1 is LEFT, 0 is STANDING and 1 is RIGHT
 
+        for (int i = 0; i < N; i++) {
+            X[i] = in.readInt();
+            H[i] = in.readInt();
+        }
+
+        out.print(solve(X, H, choices, 0));
         out.close();
+    }
+
+    private static int solve(int[] x, int[] h, int[] choices, int n) {
+        int choice1, choice2, choice3;
+
+        if (n == 0) {
+            choices[n] = -1;
+            return solve(x, h, choices, n + 1) + 1;
+        } else if (n == x.length - 1) {
+            choices[n] = 1;
+            return 1;
+        } else {
+            choices[n] = 0;
+            choice1 = solve(x, h, choices, n + 1);
+
+            choices[n] = -1;
+            if (choices[n - 1] == 1) {
+                // TODO: condition
+                choice2 = solve(x, h, choices, n + 1) + 1;
+            } else {
+                // TODO: condition
+                choice2 = solve(x, h, choices, n + 1) + 1;
+            }
+
+            // TODO: condition
+            choices[n] = 1;
+            choice3 = solve(x, h, choices, n + 1) + 1;
+
+        }
+
+        return Math.max(choice1, Math.max(choice2, choice3));
     }
 
     //FAST IO
