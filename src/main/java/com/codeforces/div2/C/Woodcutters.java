@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 /**
  * @author Orestis
+ * http://codeforces.com/problemset/problem/545/C
  */
 
 public class Woodcutters {
@@ -14,53 +15,52 @@ public class Woodcutters {
         OutputWriter out = new OutputWriter(System.out);
 
         int N = in.readInt();
-        int[] X = new int[N];
-        int[] H = new int[N];
-        int[] choices = new int[N]; // -1 is LEFT, 0 is STANDING and 1 is RIGHT
+        int[] X = new int[100005];
+        int[] H = new int[100005];
 
         for (int i = 0; i < N; i++) {
             X[i] = in.readInt();
             H[i] = in.readInt();
         }
 
-        out.print(solve(X, H, choices, 0));
+        out.print(solve(X, H, N));
         out.close();
     }
 
-    private static int solve(int[] x, int[] h, int[] choices, int n) {
-        int choice1 = -1; int choice2 = -1; int choice3 = -1;
+    private static int solve(int[] x, int[] h, int n) {
+        int infinity = Integer.MIN_VALUE;
+        int[][] dp = new int[n][2];
 
-        if (n == 0) {
-            choices[n] = -1;
-            return solve(x, h, choices, n + 1) + 1;
-        } else if (n == x.length - 1) {
-            choices[n] = 1;
-            return 1;
-        } else {
-            choice1 = solve(x, h, choices, n + 1);
+        dp[0][0] = 1; // 1st tree can always fell left
+        dp[0][1] = x[0] + h[0] < x[1] ? 1 : Integer.MIN_VALUE; // and it might also be able to fell right
 
-            int l = x[n] - h[n];
-            int r = x[n] + h[n];
+        for (int i = 1; i < n; ++i) {
+            dp[i][0] = infinity;
+            dp[i][1] = infinity;
 
-            choices[n] = -1;
-            if (choices[n - 1] == 1) { // if previous fell right
-                if (x[n - 1] < l) {
-                    choice2 = solve(x, h, choices, n + 1) + 1;
-                }
-            } else {
-                if (x[n - 1] + h[n - 1] < l) {
-                    choice2 = solve(x, h, choices, n + 1) + 1;
-                }
+            // can ith tree fell left?
+            if (x[i - 1] < x[i] - h[i]) {
+                dp[i][0] = dp[i - 1][0] + 1;
             }
 
-            if (r < x[n + 1]) {
-                choices[n] = 1;
-                choice3 = solve(x, h, choices, n + 1) + 1;
+            // is ith tree overlapping with previous tree
+            // if prev has fallen right?
+            if (x[i - 1] + h[i - 1] < x[i] - h[i]) {
+                dp[i][0] = Math.max(dp[i][0], dp[i - 1][1] + 1);
             }
 
+            dp[i][0] = Math.max(dp[i][0], dp[i - 1][0]);
+            dp[i][0] = Math.max(dp[i][0], dp[i - 1][1]);
+
+            // can ith tree fell right?
+            if (i == n - 1 || x[i] + h[i] < x[i + 1]) {
+                dp[i][1] = Math.max(dp[i][1], dp[i - 1][0] + 1);
+                dp[i][1] = Math.max(dp[i][1], dp[i - 1][1] + 1);
+            }
         }
 
-        return Math.max(choice1, Math.max(choice2, choice3));
+        return Math.max(dp[n - 1][0], dp[n - 1][1]);
+
     }
 
     //FAST IO
