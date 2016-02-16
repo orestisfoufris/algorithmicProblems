@@ -28,7 +28,7 @@ public class Woodcutters {
     }
 
     private static int solve(int[] x, int[] h, int[] choices, int n) {
-        int choice1, choice2, choice3;
+        int choice1 = -1; int choice2 = -1; int choice3 = -1;
 
         if (n == 0) {
             choices[n] = -1;
@@ -37,21 +37,26 @@ public class Woodcutters {
             choices[n] = 1;
             return 1;
         } else {
-            choices[n] = 0;
             choice1 = solve(x, h, choices, n + 1);
 
+            int l = x[n] - h[n];
+            int r = x[n] + h[n];
+
             choices[n] = -1;
-            if (choices[n - 1] == 1) {
-                // TODO: condition
-                choice2 = solve(x, h, choices, n + 1) + 1;
+            if (choices[n - 1] == 1) { // if previous fell right
+                if (x[n - 1] < l) {
+                    choice2 = solve(x, h, choices, n + 1) + 1;
+                }
             } else {
-                // TODO: condition
-                choice2 = solve(x, h, choices, n + 1) + 1;
+                if (x[n - 1] + h[n - 1] < l) {
+                    choice2 = solve(x, h, choices, n + 1) + 1;
+                }
             }
 
-            // TODO: condition
-            choices[n] = 1;
-            choice3 = solve(x, h, choices, n + 1) + 1;
+            if (r < x[n + 1]) {
+                choices[n] = 1;
+                choice3 = solve(x, h, choices, n + 1) + 1;
+            }
 
         }
 
@@ -61,7 +66,7 @@ public class Woodcutters {
     //FAST IO
     private static class InputReader {
         private InputStream stream;
-        private byte[] buf = new byte[1024];
+        private byte[] buf = new byte[1 << 10];
         private int curChar;
         private int numChars;
         private SpaceCharFilter filter;
