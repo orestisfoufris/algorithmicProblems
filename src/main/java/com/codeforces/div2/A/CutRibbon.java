@@ -20,29 +20,24 @@ public class CutRibbon {
             lengths[i] = in.readInt();
         }
 
-        int maxCuts = findMaxCuts(N, lengths);
-
+        int maxCuts = findMaxCuts(N, lengths[0], lengths[1], lengths[2]);
+        out.print(maxCuts);
         out.close();
     }
 
-    private static int findMaxCuts(int N, Integer[] lengths) {
-        int[][] dp = new int[2][2];
-        Set<Integer> numbers = new HashSet<>(3);
-        numbers.addAll(Arrays.asList(lengths));
+    private static int findMaxCuts(int N, int a, int b, int c) {
+        int max = 0;
+        for (int i = 0; i * a <= N; ++i) {
+            for (int j = 0; (i * a) + (j * b) <= N; ++j) {
+                int z = (N - i * a - j * b) / c;
 
-        int total = 0;
-        for (int i =0; i < 3; ++i) {
-            int n = N;
-            int count = 0;
-            for (int j =0; j < 3; ++j) {
-               if (numbers.contains(n - lengths[i])) {
-                   n = n - lengths[i];
-                   count += 1;
-               }
+                if (N == (z * c) + (i * a) + (j * b)) {
+                    max = Math.max(max, i + j + z);
+                }
             }
         }
 
-        return 0;
+        return max;
     }
 
     //FAST IO
