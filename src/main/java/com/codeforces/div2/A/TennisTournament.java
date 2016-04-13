@@ -25,6 +25,23 @@ public class TennisTournament {
 
     private static int[] solve(int n, int b, int p) {
         int[] res = new int[2];
+        res[1] = n * p;
+
+        int count = 0;
+        while(n > 1) {
+            count += (n - (n % 2)) * b;
+
+            // ref
+            if (n > 2) {
+                count += n / 2;
+            } else {
+                count++;
+            }
+
+            n = n / 2 + (n % 2);
+        }
+
+        res[0] = count;
         return res;
     }
 
