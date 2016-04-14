@@ -15,30 +15,27 @@ public class PrintCheck {
         int m = in.readInt(); // dimensions
         int k = in.readInt(); // # of operations
 
-        int[][] matrix = new int[n][m];
+        int[] rows = new int[n];
+        int[] columns = new int[m];
+        int[] colors = new int[100001];
 
-        while (k > 0) {
+        for (int i = 1; i <= k; ++i) {
             int rc = in.readInt();
             int num = in.readInt() - 1;
-            int color = in.readInt();
+            colors[i] = in.readInt();
 
-            // row
+            // keep track of when a row or column was painted
             if (rc == 1) {
-                for (int i = 0; i < m; ++i) {
-                    matrix[num][i] = color;
-                }
-            } else {
-                for (int i = 0; i < n; ++i) {
-                    matrix[i][num] = color;
-                }
-            }
+                rows[num] = i;
 
-            k--;
+            } else {
+                columns[num] = i;
+            }
         }
 
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
-                out.print(matrix[i][j] + " ");
+                out.print(colors[Math.max(rows[i], columns[j])] + " ");
             }
             out.print("\n");
         }
