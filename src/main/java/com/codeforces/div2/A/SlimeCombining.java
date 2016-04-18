@@ -2,14 +2,24 @@ package com.codeforces.div2.A;
 
 import javax.annotation.Generated;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class SlimeCombining {
 
     public static void main(String[] args) {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
+
+        int n = in.readInt();
+        String bin = Integer.toBinaryString(n);
+
+        for (int i = 0; i < bin.length(); ++i) {
+            if (bin.charAt(i) == '1')
+                out.print(bin.length() - i  + " ");
+        }
 
         out.close();
     }
