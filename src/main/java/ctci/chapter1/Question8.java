@@ -9,26 +9,8 @@ package ctci.chapter1;
  */
 public class Question8 {
 
+
     private static boolean isRotation(String original, String rotated) {
-        int first = original.indexOf(rotated.charAt(0));
-
-        if (first == -1 || (original.length() != rotated.length()) || original.isEmpty()) {
-            return false;
-        }
-
-        int iterations = original.length() - first;
-        int index = 0;
-        for (int i = first; i < original.length(); ++i) {
-            if (original.charAt(i) != rotated.charAt(index)) {
-                return false;
-            }
-            index++;
-        }
-
-        return original.contains(rotated.substring(iterations));
-    }
-
-    private static boolean isRotation2(String original, String rotated) {
         if (original.length() != rotated.length() || original.isEmpty()) {
             return false;
         }
@@ -47,8 +29,5 @@ public class Question8 {
 
         System.out.println(isRotation(original, rotated)); // true
         System.out.println(isRotation(original2, rotated2)); // false
-
-        System.out.println(isRotation2(original, rotated)); // true
-        System.out.println(isRotation2(original2, rotated2)); // false
     }
 }
