@@ -1,4 +1,4 @@
-package ctci.chapter2;
+package ctci.chapter3;
 
 /**
  * My stack implementation

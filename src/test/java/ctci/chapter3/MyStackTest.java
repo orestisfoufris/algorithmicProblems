@@ -1,6 +1,5 @@
 package ctci.chapter3;
 
-import ctci.chapter2.MyStack;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
