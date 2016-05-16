@@ -1,12 +1,12 @@
 package ctci.chapter3;
 
-import ctci.chapter2.SetOfStacks;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Stack;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -96,6 +96,9 @@ public class SetOfStacksTest {
         populateStack(setOfStacks, 65);
         assertEquals(setOfStacks.getStacks().size(), 1);
         assertEquals(setOfStacks.pop(0).intValue(), 65);
+
+        populateStack(setOfStacks, 4, 2, 3);
+        assertNull(setOfStacks.pop(89));
     }
 
     /**
