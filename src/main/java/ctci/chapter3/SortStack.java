@@ -17,32 +17,14 @@ public final class SortStack {
         while (!stack.isEmpty()) {
             Integer tempValue = stack.pop();
 
-            if (!temp.isEmpty()) {
-                if (tempValue > temp.peek()) {
-                    temp.push(tempValue);
-                } else {
-                    while (!temp.isEmpty() && tempValue < temp.peek()) {
-                        stack.push(temp.pop());
-                    }
-                    temp.push(tempValue);
-                }
-            } else {
-                temp.push(tempValue);
+            while (!temp.isEmpty() && tempValue < temp.peek()) {
+                stack.push(temp.pop());
             }
+
+            temp.push(tempValue);
+
         }
 
         return temp;
-    }
-
-    public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
-        stack.push(3);
-        stack.push(6);
-        stack.push(12);
-        stack.push(8);
-        stack.push(5);
-
-        System.out.println(SortStack.sort(stack));
     }
 }
