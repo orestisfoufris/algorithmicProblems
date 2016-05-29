@@ -10,15 +10,15 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Tests for custom double LinkedList
+ * Tests for custom double MyLinkedList
  */
-public class LinkedListTest {
+public class MyLinkedListTest {
 
-    private LinkedList<Integer> linkedList;
+    private MyLinkedList<Integer> linkedList;
 
     @BeforeMethod
     public void setUp() {
-        linkedList = new LinkedList<>();
+        linkedList = new MyLinkedList<>();
     }
 
     @AfterMethod
@@ -151,7 +151,7 @@ public class LinkedListTest {
 
         int[] actual = new int[linkedList.size()];
 
-        LinkedList.Node<Integer> res = linkedList.partition(5);
+        MyLinkedList.Node<Integer> res = linkedList.partition(5);
 
         int i = 0;
         while (res != null) {
@@ -165,7 +165,7 @@ public class LinkedListTest {
 
     @Test
     public void testPalindrome() {
-        LinkedList<Character> characterLinkedList = new LinkedList<>();
+        MyLinkedList<Character> characterLinkedList = new MyLinkedList<>();
         characterLinkedList.add('a');
         characterLinkedList.add('a');
         characterLinkedList.add('b');
@@ -173,13 +173,13 @@ public class LinkedListTest {
         characterLinkedList.add('a');
         characterLinkedList.add('a');
 
-        boolean actual = LinkedList.isPalindrome(characterLinkedList);
+        boolean actual = MyLinkedList.isPalindrome(characterLinkedList);
         assertEquals(actual, true);
     }
 
     @Test
     public void testPalindromeFalse() {
-        LinkedList<Character> characterLinkedList = new LinkedList<>();
+        MyLinkedList<Character> characterLinkedList = new MyLinkedList<>();
         characterLinkedList.add('a');
         characterLinkedList.add('a');
         characterLinkedList.add('b');
@@ -188,18 +188,18 @@ public class LinkedListTest {
         characterLinkedList.add('a');
         characterLinkedList.add('a');
 
-        boolean actual = LinkedList.isPalindrome(characterLinkedList);
+        boolean actual = MyLinkedList.isPalindrome(characterLinkedList);
         assertEquals(actual, false);
     }
 
     @Test
     public void testPalindromeTrue2() {
-        LinkedList<Character> characterLinkedList = new LinkedList<>();
+        MyLinkedList<Character> characterLinkedList = new MyLinkedList<>();
         characterLinkedList.add('a');
         characterLinkedList.add('b');
         characterLinkedList.add('a');
 
-        boolean actual = LinkedList.isPalindrome(characterLinkedList);
+        boolean actual = MyLinkedList.isPalindrome(characterLinkedList);
         assertEquals(actual, true);
     }
 
@@ -209,8 +209,8 @@ public class LinkedListTest {
      */
     @Test
     public void reverseTwoListsAndAddTheNumbers() {
-        LinkedList<Integer> firstList = new LinkedList<>();
-        LinkedList<Integer> secondeList = new LinkedList<>();
+        MyLinkedList<Integer> firstList = new MyLinkedList<>();
+        MyLinkedList<Integer> secondeList = new MyLinkedList<>();
 
         firstList.add(7);
         firstList.add(1);
@@ -226,8 +226,8 @@ public class LinkedListTest {
         StringBuilder firstNumber = new StringBuilder();
         StringBuilder secondNumber = new StringBuilder();
 
-        LinkedList.Node<Integer> firstHead = firstList.getHead();
-        LinkedList.Node<Integer> secondHead = secondeList.getHead();
+        MyLinkedList.Node<Integer> firstHead = firstList.getHead();
+        MyLinkedList.Node<Integer> secondHead = secondeList.getHead();
 
         while (firstHead != null) {
             firstNumber.append(String.valueOf(firstHead.data));
@@ -242,7 +242,7 @@ public class LinkedListTest {
         int sum = Integer.valueOf(firstNumber.toString()) + Integer.valueOf(secondNumber.toString());
         assertEquals(sum, 912);
 
-        LinkedList<Integer> sumList = new LinkedList<>();
+        MyLinkedList<Integer> sumList = new MyLinkedList<>();
         while (sum > 0) {
             int number = sum % 10;
             sumList.add(number);
@@ -254,8 +254,8 @@ public class LinkedListTest {
 
     @Test
     public void reverseTwoListsAndAddTheNumbers2() {
-        LinkedList<Integer> firstList = new LinkedList<>();
-        LinkedList<Integer> secondList = new LinkedList<>();
+        MyLinkedList<Integer> firstList = new MyLinkedList<>();
+        MyLinkedList<Integer> secondList = new MyLinkedList<>();
 
         firstList.add(7);
         firstList.add(1);
@@ -272,8 +272,8 @@ public class LinkedListTest {
         StringBuilder firstNumber = new StringBuilder();
         StringBuilder secondNumber = new StringBuilder();
 
-        LinkedList.Node<Integer> firstHead = firstList.getHead();
-        LinkedList.Node<Integer> secondHead = secondList.getHead();
+        MyLinkedList.Node<Integer> firstHead = firstList.getHead();
+        MyLinkedList.Node<Integer> secondHead = secondList.getHead();
 
         while (firstHead != null) {
             firstNumber.append(String.valueOf(firstHead.data));
@@ -288,7 +288,7 @@ public class LinkedListTest {
         int sum = Integer.valueOf(firstNumber.toString()) + Integer.valueOf(secondNumber.toString());
         assertEquals(sum, 2912);
 
-        LinkedList<Integer> sumList = new LinkedList<>();
+        MyLinkedList<Integer> sumList = new MyLinkedList<>();
         while (sum > 0) {
             int number = sum % 10;
             sumList.add(number);
@@ -322,7 +322,7 @@ public class LinkedListTest {
         assertEquals(Arrays.toString(actual), Arrays.toString(expected));
     }
 
-    private void addElements(LinkedList<Integer> linkedList) {
+    private void addElements(MyLinkedList<Integer> linkedList) {
         linkedList.add(1);
         linkedList.add(6);
         linkedList.add(7);

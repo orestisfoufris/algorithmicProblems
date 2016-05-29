@@ -3,9 +3,9 @@ package ctci.chapter2;
 import java.util.*;
 
 /**
- * A custom doubly LinkedList. Do not use for anything serious.
+ * A custom doubly MyLinkedList. Do not use for anything serious.
  */
-public class LinkedList<T extends Comparable<T>> {
+public class MyLinkedList<T extends Comparable<T>> {
     private int size = 0;
     private Node<T> head = null;
     private Node<T> tail = null;
@@ -118,7 +118,7 @@ public class LinkedList<T extends Comparable<T>> {
      * 2.7 implement a function to check if a linked list is a palindrome
      * DO NOT use the previous links
      */
-    static <E extends Comparable<E>> boolean isPalindrome(LinkedList<E> list) {
+    static <E extends Comparable<E>> boolean isPalindrome(MyLinkedList<E> list) {
         Deque<E> stack = new ArrayDeque<>();
         double middle = Math.ceil(list.size() / 2.0);
         Node<E> start = list.getHead();
@@ -152,7 +152,7 @@ public class LinkedList<T extends Comparable<T>> {
      *
      * @param list to be reversed
      */
-    void reverseLinkedList(LinkedList<T> list) {
+    void reverseLinkedList(MyLinkedList<T> list) {
         Node<T> current = list.getHead();
 
         while (current != null) {
@@ -358,6 +358,6 @@ public class LinkedList<T extends Comparable<T>> {
             node = node.next;
         }
 
-        return "LinkedList= " + sb.append("NULL").toString();
+        return "MyLinkedList= " + sb.append("NULL").toString();
     }
 }
