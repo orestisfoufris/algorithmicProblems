@@ -1,9 +1,6 @@
 package ctci.chapter4;
 
 
-import java.util.Deque;
-import java.util.LinkedList;
-
 /**
  * binary-search-tree property:
  * Let x be a node in a binary search tree.
@@ -11,7 +8,6 @@ import java.util.LinkedList;
  */
 
 public class BST {
-    private Deque<Node> linkedList = new LinkedList<>();
     private Node root = null;
 
     /**
@@ -78,7 +74,7 @@ public class BST {
      * @return the successor of @param n
      */
     Integer findSuccessor(Integer n) {
-        return null;
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
     /**
@@ -112,21 +108,27 @@ public class BST {
     }
 
     /**
-     *
-     * @param node to be deleted
-     * @return
+     * removes all occurrences of @param data from the tree.
      */
-    Integer remove(Node node) {
-        Integer key = node.key;
+    void remove(Integer data) {
+        Node node = searchTreeForNode(root, data);
+        removeAll(node);
+    }
 
-        if (node.left == null) {
-            transplant(node, node.right);
+    /**
+     * Removes all nodes where node.key == data
+     */
+    private void removeAll(Node node) {
+        while (node != null) {
+            if (node.left == null) {
+                transplant(node, node.right);
 
-        } else if (node.right == null) {
-            transplant(node, node.left);
+            } else if (node.right == null) {
+                transplant(node, node.left);
+            }
+
+            node = searchTreeForNode(root, node.key);
         }
-
-        return key;
     }
 
     /**
