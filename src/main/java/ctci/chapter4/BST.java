@@ -1,8 +1,5 @@
 package ctci.chapter4;
 
-
-import com.sun.istack.internal.NotNull;
-
 /**
  * binary-search-tree property:
  * Let x be a node in a binary search tree.
@@ -135,12 +132,11 @@ public class BST {
         }
 
         if (key < node.key) {
-            searchTreeForNode(node.left, key);
+            return searchTreeForNode(node.left, key);
         } else {
-            searchTreeForNode(node.right, key);
+            return searchTreeForNode(node.right, key);
         }
 
-        return null;
     }
 
     /**
@@ -249,7 +245,7 @@ public class BST {
             Integer p = (parent == null) ? null : parent.key;
             Integer l = (left == null) ? null : left.key;
             Integer r = (right == null) ? null : right.key;
-            return "Node has: parent= " + p + " left= " + l + " right= " + r;
+            return "Node: " + key + " parent= " + p + " left= " + l + " right= " + r;
         }
     }
 }
