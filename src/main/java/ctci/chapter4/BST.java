@@ -1,6 +1,8 @@
 package ctci.chapter4;
 
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * binary-search-tree property:
  * Let x be a node in a binary search tree.
@@ -18,11 +20,11 @@ public class BST {
         inOrderTreeWalk(root);
     }
 
-    private void inOrderTreeWalk(Node root) {
-        if (root != null) {
-            inOrderTreeWalk(root.left);
-            System.out.println(root.key);
-            inOrderTreeWalk(root.right);
+    private void inOrderTreeWalk(Node node) {
+        if (node != null) {
+            inOrderTreeWalk(node.left);
+            System.out.println(node.key);
+            inOrderTreeWalk(node.right);
         }
     }
 
@@ -39,7 +41,18 @@ public class BST {
      * @return min element of the tree
      */
     Integer findMinimum() {
-        Node x = root;
+        Node min = findMinimum(root);
+
+        return min == null ? null : min.key;
+    }
+
+    /**
+     *
+     * @param node
+     * @return min element starting from @param node
+     */
+    private Node findMinimum(Node node) {
+        Node x = node;
 
         if (x == null) {
             return null;
@@ -49,7 +62,7 @@ public class BST {
             x = x.left;
         }
 
-        return x.key;
+        return x;
     }
 
     /**
@@ -57,7 +70,13 @@ public class BST {
      * @return max element of the tree
      */
     Integer findMaximum() {
-        Node x = root;
+        Node max = findMaximum(root);
+
+        return max == null ? null : max.key;
+    }
+
+    private Node findMaximum(Node node) {
+        Node x = node;
 
         if (x == null) {
             return null;
@@ -67,14 +86,31 @@ public class BST {
             x = x.right;
         }
 
-        return x.key;
+        return x;
     }
 
     /**
      * @return the successor of @param n
      */
     Integer findSuccessor(Integer n) {
-        throw new UnsupportedOperationException("not yet implemented");
+        Node node = searchTreeForNode(root, n);
+
+        return findSuccessor(node).key;
+    }
+
+    private Node findSuccessor(Node node) {
+
+        if (node.right != null) {
+            return findMinimum(node);
+        }
+
+        Node successor = node.parent;
+        while (successor != null && node == successor.right) {
+            node = successor;
+            successor = successor.parent;
+        }
+
+        return successor;
     }
 
     /**
@@ -125,6 +161,20 @@ public class BST {
 
             } else if (node.right == null) {
                 transplant(node, node.left);
+            } else {
+                Node min = findMinimum(node.right);
+                if (min != null) {
+
+                    if (min.parent != node) {
+                        transplant(min, min.right);
+                        min.right = node.right;
+                        min.right.parent = min;
+                    }
+
+                    transplant(node, min);
+                    min.left = node.left;
+                    min.left.parent = min;
+                }
             }
 
             node = searchTreeForNode(root, node.key);
@@ -162,9 +212,9 @@ public class BST {
             y = x;
 
             if (node.key < x.key) {
-                x = node.left;
+                x = x.left;
             } else {
-                x = node.right;
+                x = x.right;
             }
         }
 
