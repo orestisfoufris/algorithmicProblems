@@ -6,14 +6,15 @@ package ctci.chapter4;
  * If y is a node in the left subtree of x, then y.key <= x.key. If y is a node in the right subtree of x, then y.key >= x.key.
  */
 
-public class BST {
+class BST implements Tree {
     private Node root = null;
 
     /**
      * print the key of the tree in a sorted order
      * starting from BST's root. Takes Θ(n) time.
      */
-    void inOrderTreeWalk(){
+    @Override
+    public void inOrderTreeWalk(){
         inOrderTreeWalk(root);
     }
 
@@ -28,7 +29,8 @@ public class BST {
     /**
      * Add an element to the BST
      */
-    void add(Integer element) {
+    @Override
+    public void add(Integer element) {
         Node node = new Node(null, null, null, element);
         treeInsert(node);
     }
@@ -37,7 +39,8 @@ public class BST {
      *
      * @return min element of the tree
      */
-    Integer findMinimum() {
+    @Override
+    public Integer findMinimum() {
         Node min = findMinimum(root);
 
         return min == null ? null : min.key;
@@ -66,7 +69,8 @@ public class BST {
      *
      * @return max element of the tree
      */
-    Integer findMaximum() {
+    @Override
+    public Integer findMaximum() {
         Node max = findMaximum(root);
 
         return max == null ? null : max.key;
@@ -142,7 +146,8 @@ public class BST {
     /**
      * removes all occurrences of @param data from the tree.
      */
-    void remove(Integer data) {
+    @Override
+    public void remove(Integer data) {
         Node node = searchTreeForNode(root, data);
         removeAll(node);
     }
@@ -227,7 +232,48 @@ public class BST {
         }
     }
 
-    private class Node {
+    @Override
+    public Node getRoot() {
+        return root;
+    }
+
+    private static int checkHeight(Node node) {
+
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = checkHeight(node.left);
+
+        if (leftHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
+
+        int rightHeight = checkHeight(node.right);
+
+        if (rightHeight == Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        }
+
+        int height = Math.abs(leftHeight - rightHeight);
+        if (height > 1) {
+            return Integer.MIN_VALUE;
+        } else {
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+
+    }
+
+    /**
+     * Find if a tree is balanced or not.
+     */
+    static boolean isBalanced(Node node) {
+        int result = checkHeight(node);
+
+        return result != Integer.MIN_VALUE;
+    }
+
+    static class Node {
         Node parent;
         Node left;
         Node right;
