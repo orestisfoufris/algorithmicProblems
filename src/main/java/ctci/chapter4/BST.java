@@ -3,7 +3,7 @@ package ctci.chapter4;
 /**
  * binary-search-tree property:
  * Let x be a node in a binary search tree.
- * If y is a node in the left subtree of x, then y.key <= x.key. If y is a node in the right subtree of x, then y.key >= x.key.
+ * If y is a node in the left subtree of x, then y.key <= x.key. If y is a node in the right subtree of x, then y.key > x.key.
  */
 
 class BST implements Tree {
@@ -271,6 +271,39 @@ class BST implements Tree {
         int result = checkHeight(node);
 
         return result != Integer.MIN_VALUE;
+    }
+
+    /**
+     * 4.5 Check if a binary tree is BST or not
+     */
+
+    static boolean isBinarySearchTree(Tree tree) {
+        Node rootNode = tree.getRoot();
+        return isBinarySearchTree(rootNode, rootNode.key) != Integer.MAX_VALUE;
+    }
+
+    private static Integer isBinarySearchTree(Node node, Integer rootKey) {
+
+        if (node != null) {
+            Integer left = isBinarySearchTree(node.left, rootKey);
+            Integer parent = node.key;
+
+            if (left != null && (node.key > rootKey || left > parent || left == Integer.MAX_VALUE)) {
+                return Integer.MAX_VALUE;
+            }
+
+            Integer right = isBinarySearchTree(node.right, rootKey);
+
+            if (right != null && ((node.key <= rootKey && node.parent != null) ||
+                                                               right <= parent ||
+                                                               right == Integer.MAX_VALUE)) {
+                return Integer.MAX_VALUE;
+            }
+
+            return node.key;
+        }
+
+        return null;
     }
 
     static class Node {
