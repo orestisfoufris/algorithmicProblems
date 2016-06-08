@@ -279,31 +279,44 @@ class BST implements Tree {
 
     static boolean isBinarySearchTree(Tree tree) {
         Node rootNode = tree.getRoot();
-        return isBinarySearchTree(rootNode, rootNode.key) != Integer.MAX_VALUE;
+        return isBinarySearchTree(rootNode, rootNode.key).isBinary;
     }
 
-    private static Integer isBinarySearchTree(Node node, Integer rootKey) {
+    private static Pair isBinarySearchTree(Node node, Integer rootKey) {
 
         if (node != null) {
-            Integer left = isBinarySearchTree(node.left, rootKey);
+            Pair left = isBinarySearchTree(node.left, rootKey);
             Integer parent = node.key;
 
-            if (left != null && (node.key > rootKey || left > parent || left == Integer.MAX_VALUE)) {
-                return Integer.MAX_VALUE;
+            if (left != null && (node.key > rootKey || left.data > parent || !left.isBinary)) {
+                return new Pair(left.data, false);
             }
 
-            Integer right = isBinarySearchTree(node.right, rootKey);
+            Pair right = isBinarySearchTree(node.right, rootKey);
 
             if (right != null && ((node.key <= rootKey && node.parent != null) ||
-                                                               right <= parent ||
-                                                               right == Integer.MAX_VALUE)) {
-                return Integer.MAX_VALUE;
+                                                               right.data <= parent ||
+                                                               !right.isBinary)) {
+                return new Pair(right.data, false);
             }
 
-            return node.key;
+            return new Pair(node.key, true);
         }
 
         return null;
+    }
+
+    /**
+     * Helper class for the isBinarySearchTree method
+     */
+    private static class Pair {
+        final Integer data;
+        final boolean isBinary;
+
+        public Pair(Integer data, boolean isBinary) {
+            this.data = data;
+            this.isBinary = isBinary;
+        }
     }
 
     static class Node {
