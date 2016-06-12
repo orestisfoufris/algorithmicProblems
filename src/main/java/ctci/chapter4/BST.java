@@ -1,5 +1,9 @@
 package ctci.chapter4;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * binary-search-tree property:
  * Let x be a node in a binary search tree.
@@ -311,6 +315,22 @@ class BST implements Tree {
      */
     void createBstFromArray(int[] array) {
         root  = createBstFromArray(array, 0, array.length - 1);
+    }
+
+    /**
+     * 4.4 Given a binary tree create an algorithm which creates
+     * a linked list of all the nodes at each depth
+     */
+    void createListsForEachDepth(Map<Integer, List<Integer>> map) {
+        createListsForEachDepth(map, root, 1);
+    }
+
+    private static void createListsForEachDepth(Map<Integer, List<Integer>> map, Node node, Integer depth) {
+        if (node != null) {
+            createListsForEachDepth(map, node.left, depth + 1);
+            map.computeIfAbsent(depth, key -> new LinkedList<>()).add(node.key);
+            createListsForEachDepth(map, node.right, depth + 1);
+        }
     }
 
     private Node createBstFromArray(int[] array, int start, int end) {
