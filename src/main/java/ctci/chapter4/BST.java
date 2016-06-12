@@ -307,6 +307,26 @@ class BST implements Tree {
     }
 
     /**
+     * 4.3 create a binary search tree for a sorted array with unique elements
+     */
+    void createBstFromArray(int[] array) {
+        root  = createBstFromArray(array, 0, array.length - 1);
+    }
+
+    private Node createBstFromArray(int[] array, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        int mid = (start + end) / 2;
+        Node root = new Node(null, null, null, array[mid]);
+        root.left = createBstFromArray(array, start, mid - 1);
+        root.right = createBstFromArray(array, mid + 1, end);
+
+        return root;
+    }
+
+    /**
      * Helper class for the isBinarySearchTree method
      */
     private static class Pair {
