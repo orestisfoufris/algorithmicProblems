@@ -346,6 +346,65 @@ class BST implements Tree {
         return root;
     }
 
+    Integer findCommonAncestor(Integer nodeOne, Integer nodeTwo) {
+        Node one = searchTreeForNode(root, nodeOne);
+        Node two = searchTreeForNode(root, nodeTwo);
+
+        Answer answer = findCommonAncestor(one, two, root);
+
+        if (answer.isAncestor) {
+            return answer.node.key;
+        }
+
+        return null;
+    }
+
+    /**
+     * 4.7 find the least common ancestor of two nodes
+     * @return the LCA
+     */
+    private Answer findCommonAncestor(Node one, Node two, Node start) {
+        if (start == null) {
+            return new Answer(null, false);
+        }
+
+        if (start.equals(one) && start.equals(two)) {
+            return new Answer(start, true);
+        }
+
+        Answer left = findCommonAncestor(one, two, start.left);
+        if (left.isAncestor) {
+            return left;
+        }
+
+        Answer right = findCommonAncestor(one, two, start.right);
+        if (right.isAncestor) {
+            return right;
+        }
+
+        if (left.node != null && right.node != null) {
+            return new Answer(start, true);
+
+        } else if (start.equals(one) || start.equals(two)) {
+            boolean found = left.node != null || right.node != null;
+            return new Answer(start, found);
+        } else {
+            Node node = left.node != null ? left.node : right.node;
+            return new Answer(node, false);
+        }
+    }
+
+
+    private static class Answer {
+        final Node node;
+        final boolean isAncestor;
+
+        private Answer(Node node, boolean isAncestor) {
+            this.node = node;
+            this.isAncestor = isAncestor;
+        }
+    }
+
     /**
      * Helper class for the isBinarySearchTree method
      */
