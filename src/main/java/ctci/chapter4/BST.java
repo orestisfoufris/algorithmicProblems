@@ -394,6 +394,53 @@ class BST implements Tree {
         }
     }
 
+    /**
+     * 4.9
+     * Design an algorithm to print all paths which sum to a given value.
+     * The path does not need to start or end at the root or a leaf, but it must
+     * go in straight line down.
+     * @param sum
+     */
+    void printPathEqualToSum(int sum) {
+        printPathEqualToSum(sum, root, 0, new int[findDepth(root)]);
+    }
+
+    private void printPathEqualToSum(int sum, Node node, int depth, int[] keys) {
+        if (node == null) {
+            return;
+        }
+
+        keys[depth] = node.key;
+        printPath(keys, sum, depth);
+
+        printPathEqualToSum(sum, node.left, depth + 1, keys);
+        printPathEqualToSum(sum, node.right, depth + 1, keys);
+
+    }
+
+    private void printPath(int[] array, int sum, int depth) {
+        int count = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = depth; i >= 0; --i) {
+            int current = array[i];
+            count += current;
+            sb.append(current).append(" ");
+
+            if (count == sum) {
+                System.out.println(sb.toString());
+                break;
+            }
+        }
+    }
+
+    int findDepth(Node node) {
+        if (node == null) {
+            return 0;
+        }
+
+        return 1 + Math.max(findDepth(node.left), findDepth(node.right));
+    }
 
     private static class Answer {
         final Node node;
