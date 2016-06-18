@@ -428,7 +428,7 @@ class BST implements Tree {
             sb.append(current).append(" ");
 
             if (count == sum) {
-                System.out.println(sb.toString());
+                System.out.println(sb.reverse().toString());
                 break;
             }
         }
