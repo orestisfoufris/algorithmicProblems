@@ -6,21 +6,27 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 
 /**
- * http://codeforces.com/problemset/problem/682/A
+ * http://codeforces.com/problemset/problem/681/A
  */
-public class AlyonaAndNumbers {
+public class AGoodContest {
 
     public static void main(String[] args) {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
-        long a = in.readInt();
-        long b = in.readInt();
+        String result = "NO";
+        int red = 2400;
 
-        long result = 0;
-        for (long i = 1; i <= a; i++) {
-            long k = i % 5;
-            result += (k + b) / 5;
+        int t = in.readInt();
+        for (int i = 0; i< t; ++i) {
+            in.readString();
+            int before = in.readInt();
+            int after = in.readInt();
+
+            if (before >= red && after - before > 0) {
+                result = "YES";
+            }
+
         }
 
         out.print(result);
