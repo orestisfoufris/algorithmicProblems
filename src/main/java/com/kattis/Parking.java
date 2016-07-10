@@ -18,57 +18,53 @@ public class Parking {
         int B = in.readInt();
         int C = in.readInt();
 
-        int minArrival = Integer.MAX_VALUE;
-        int maxDeparture = Integer.MIN_VALUE;
+        TruckEvent[] sortedTruckEvents = new TruckEvent[6];
+        int[] prices = {0, A, B * 2, C * 3};
 
-        Times[] times = new Times[3];
-
+        int index = 0;
         for (int i = 0; i < 3; ++i) {
-            int arrival = in.readInt();
-            int departure = in.readInt();
-
-            minArrival = Math.min(minArrival, arrival);
-            maxDeparture = Math.max(maxDeparture, departure);
-            times[i] = new Times(arrival, departure);
+            sortedTruckEvents[i + index] = new TruckEvent(in.readInt(), true);
+            sortedTruckEvents[i + 1 + index] = new TruckEvent(in.readInt(), false);
+            index++;
         }
 
+        Arrays.sort(sortedTruckEvents);
+
         int result = 0;
-        for (int i = minArrival; i <= maxDeparture; ++i) {
-            int count = 0;
-            for (Times t : times) {
-                if (t.arrival <= i && t.departure > i) {
-                    count++;
-                }
-            }
-
-            switch (count) {
-                case 1:
-                    result += A;
-                    break;
-                case 2:
-                    result += B * 2;
-                    break;
-                case 3:
-                    result += C * 3;
-                    break;
-                default:
-                    break;
-            }
-
+        int truckCounter = 0;
+        int currentTime = 0;
+        for (int i = 0; i < sortedTruckEvents.length; ++i) {
+            TruckEvent event = sortedTruckEvents[i];
+            result += prices[truckCounter] * (event.getValue() - currentTime);
+            truckCounter += event.getModifier();
+            currentTime = event.getValue();
         }
 
         out.print(result);
         out.close();
     }
 
+    // helper class
+    private static class TruckEvent implements Comparable<TruckEvent> {
+        final int value;
+        final boolean isArriving;
 
-    private static class Times {
-        final int arrival;
-        final int departure;
+        TruckEvent(int value, boolean isArriving) {
+            this.value = value;
+            this.isArriving = isArriving;
+        }
 
-        Times(int arrival, int departure) {
-            this.arrival = arrival;
-            this.departure = departure;
+        int getValue() {
+            return value;
+        }
+
+        int getModifier() {
+            return isArriving ? 1 : -1;
+        }
+
+        @Override
+        public int compareTo(TruckEvent truckEvent) {
+            return Integer.compare(value, truckEvent.value);
         }
     }
 
