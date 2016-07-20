@@ -14,18 +14,29 @@ public class Vauvau {
         InputReader in = new InputReader(System.in);
         OutputWriter out = new OutputWriter(System.out);
 
-        int A = in.readInt(); // starts
-        int B = in.readInt(); // ends
-
-        int C = in.readInt(); // starts
-        int D = in.readInt(); // ends
+        int[] times = new int[4];
+        for (int i = 0; i < 4; i++) {
+            times[i] = in.readInt();
+        }
 
         int[] people = new int[3];
         for (int i = 0; i < 3; ++i) {
             people[i] = in.readInt();
         }
 
-        out.close();
+        String[] answers = {"none", "one", "both"};
+
+        for (int i = 0; i < 3; ++i) {
+
+            int count = 0;
+            for (int j = 0; j < 4; j += 2) {
+                int time = people[i] % (times[j] + times[j + 1]);
+                count += time > 0 && time <= times[j] ? 1 : 0;
+            }
+            out.print(answers[count] + "\n");
+        }
+
+            out.close();
     }
 
 
