@@ -8,6 +8,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * 16.3 Find all permutation of an array
+ * Editorial : http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
  */
 public final class GeneratePermutation {
 
