@@ -1,5 +1,7 @@
 package com.leetcode.dynamicprogramming;
 
+import java.util.Arrays;
+
 /**
  * https://leetcode.com/problems/counting-bits/
  */
@@ -16,4 +18,8 @@ public class CountingBits {
         return count;
     }
 
+    public static void main(String[] args) {
+        CountingBits c = new CountingBits();
+        System.out.println(Arrays.toString(c.countBits(15)));
+    }
 }
