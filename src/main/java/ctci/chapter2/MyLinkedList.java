@@ -154,11 +154,12 @@ public class MyLinkedList<T extends Comparable<T>> {
      */
     void reverseLinkedList(MyLinkedList<T> list) {
         Node<T> current = list.getHead();
+        Node<T> prev = null;
 
         while (current != null) {
-            Node<T> previous = current.previous;
             Node<T> next = current.next;
-            current.next = previous;
+            current.next = prev;
+            prev = current;
             current = next;
         }
 
