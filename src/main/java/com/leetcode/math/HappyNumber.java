@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.leetcode.math;
 
 /**
  * https://leetcode.com/problems/happy-number/
