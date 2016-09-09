@@ -8,7 +8,7 @@ public class BullsAndCows {
     public String getHint(String secret, String guess) {
         int bulls = 0, cows = 0, size = secret.length();
         char s, g;
-        int[] array = new int[256];
+        int[] array = new int[11];
 
         for(int i = 0; i < size; ++i) {
             s = secret.charAt(i);
@@ -17,7 +17,7 @@ public class BullsAndCows {
             if (s == g) {
                 bulls++;
             } else {
-                array[s]++;
+                array[57 - s]++;
             }
         }
 
@@ -25,9 +25,9 @@ public class BullsAndCows {
             g = guess.charAt(i);
             s = secret.charAt(i);
 
-            if(array[g] > 0 && g != s) {
+            if(array[57 - g] > 0 && g != s) {
                 cows++;
-                array[g]--;
+                array[57 - g]--;
             }
         }
 
