@@ -17,17 +17,16 @@ public class BullsAndCows {
             if (s == g) {
                 bulls++;
             } else {
+                if (array[57 - g] > 0) {
+                    cows++;
+                }
+                if (array[57 - s] < 0) {
+                    cows++;
+                }
+
                 array[57 - s]++;
-            }
-        }
-
-        for(int i = 0; i < size; ++i) {
-            g = guess.charAt(i);
-            s = secret.charAt(i);
-
-            if(array[57 - g] > 0 && g != s) {
-                cows++;
                 array[57 - g]--;
+
             }
         }
 
