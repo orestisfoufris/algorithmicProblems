@@ -10,17 +10,16 @@ public class RemoveLinkedListElements {
         ListNode dummy = new ListNode(Integer.MIN_VALUE);
         dummy.next = head;
 
-        ListNode curr = head;
         ListNode prev = dummy;
 
-        while (curr != null) {
-            if (curr.val == val) {
-                prev.next = curr.next;
+        while (head != null) {
+            if (head.val == val) {
+                prev.next = head.next;
             } else {
                 prev = prev.next;
             }
 
-            curr = curr.next;
+            head = head.next;
         }
 
         return dummy.next;
