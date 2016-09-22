@@ -22,6 +22,7 @@ public class EightQueensChessProblem {
             int B = in.readInt();
 
             int[] computed = new int[BOARD_SIZE];
+            Arrays.fill(computed, -1);
 
             out.print("SOLN       COLUMN\n");
             out.print(" #      1 2 3 4 5 6 7 8\n\n");
