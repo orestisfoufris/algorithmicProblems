@@ -17,11 +17,11 @@ public class PalindromePartitioning {
     }
 
     public void backtrack(List<List<String>> list, List<String> prev, String s, int start){
-        if(start == s.length())
+        if (start == s.length()) {
             list.add(new ArrayList<>(prev));
-        else{
-            for(int i = start; i < s.length(); i++){
-                if(isPalidrome(s, start, i)){
+        } else {
+            for(int i = start; i < s.length(); i++) {
+                if(isPalindrome(s, start, i)) {
                     prev.add(s.substring(start, i + 1));
                     backtrack(list, prev, s, i + 1);
                     prev.remove(prev.size() - 1);
@@ -30,7 +30,7 @@ public class PalindromePartitioning {
         }
     }
 
-    public boolean isPalidrome(String s, int low, int high) {
+    public boolean isPalindrome(String s, int low, int high) {
         while (low < high) {
             if (s.charAt(low++) != s.charAt(high--)) {
                 return false;
