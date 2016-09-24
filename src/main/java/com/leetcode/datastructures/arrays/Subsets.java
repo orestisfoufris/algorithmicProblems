@@ -1,7 +1,9 @@
 package com.leetcode.datastructures.arrays;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * https://leetcode.com/problems/subsets/
@@ -24,5 +26,23 @@ public class Subsets {
         }
 
         return result;
+    }
+
+    public static List<List<Integer>> subsetsBacktracking(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+
+        backtrack(0, lists, nums, new ArrayList<>());
+        return lists;
+    }
+
+    private static void backtrack(int start, List<List<Integer>> lists, int[] nums, List<Integer> prev) {
+        lists.add(new ArrayList<>(prev));
+
+        for (int j = start; j < nums.length; ++j) {
+            prev.add(nums[j]);
+            backtrack(j + 1, lists, nums, prev);
+            prev.remove(prev.size() - 1);
+        }
+
     }
 }
