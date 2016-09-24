@@ -20,7 +20,7 @@ public class CombinationSum {
 
 
     private void backtrack(int start, List<List<Integer>> result, List<Integer> prevState,
-                                                        int[] cands, int count, int target) {
+                                                                  int[] cands, int count, int target) {
 
         if (count == target) {
             result.add(new ArrayList<>(prevState));
