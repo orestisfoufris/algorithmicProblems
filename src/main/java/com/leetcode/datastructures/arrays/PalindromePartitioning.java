@@ -16,7 +16,7 @@ public class PalindromePartitioning {
         return list;
     }
 
-    public void backtrack(List<List<String>> list, List<String> prev, String s, int start){
+    private void backtrack(List<List<String>> list, List<String> prev, String s, int start){
         if (start == s.length()) {
             list.add(new ArrayList<>(prev));
         } else {
@@ -30,7 +30,7 @@ public class PalindromePartitioning {
         }
     }
 
-    public boolean isPalindrome(String s, int low, int high) {
+    private boolean isPalindrome(String s, int low, int high) {
         while (low < high) {
             if (s.charAt(low++) != s.charAt(high--)) {
                 return false;
