@@ -1,6 +1,7 @@
 package com.hackerrank.algorithms.dp;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 /**
@@ -27,14 +28,40 @@ public class TheCoinChangeProblem {
         out.close();
     }
 
+    private static long topDown(int[] coins, int N, int M) {
+        long[][] dp = new long[N + 1][M];
+
+        for (int i = 0; i <= N; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+
+        return solveTopDown(coins, N, M, dp);
+    }
+
+    private static long solveTopDown(int[] coins, int N, int i, long[][] dp) {
+        if (N < 0 || i < 0) {
+            return 0;
+        }
+
+        if (N == 0) return 1;
+        if (dp[N][i] != -1) { return dp[N][i]; }
+
+        long res = solveTopDown(coins, N - coins[i], i, dp) + solveTopDown(coins, N, i - 1, dp);
+        dp[N][i] = res;
+
+        return res;
+    }
+
     public static long solve(int[] coins, int N) {
         long[] numCoins = new long[N + 1];
         numCoins[0] = 1;
+
         for (int coin : coins) {
             for (int j = coin; j <= N; j++) {
                 numCoins[j] += numCoins[(j - coin)];
             }
         }
+
         return numCoins[N];
     }
 
