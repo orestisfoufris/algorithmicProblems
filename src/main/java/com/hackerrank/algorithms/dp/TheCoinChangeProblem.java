@@ -53,16 +53,18 @@ public class TheCoinChangeProblem {
     }
 
     public static long solve(int[] coins, int N) {
-        long[] numCoins = new long[N + 1];
-        numCoins[0] = 1;
+        long[] dp = new long[N + 1];
+        dp[0] = 1;
 
         for (int coin : coins) {
             for (int j = coin; j <= N; j++) {
-                numCoins[j] += numCoins[(j - coin)];
+                // all the ways we have created sum j plus
+                // all the ways we have created previous sum
+                dp[j] += dp[j - coin];
             }
         }
 
-        return numCoins[N];
+        return dp[N];
     }
 
     //FAST IO
