@@ -1,7 +1,5 @@
 package com.leetcode.dynamicprogramming;
 
-import java.util.Arrays;
-
 /**
  * 03/10/2016
  * https://leetcode.com/problems/range-sum-query-2d-immutable/
