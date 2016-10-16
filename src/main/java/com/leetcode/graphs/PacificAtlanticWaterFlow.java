@@ -74,7 +74,7 @@ public class PacificAtlanticWaterFlow {
             for (int[] direction : dirs) {
                 int row = point[0] + direction[0];
                 int col = point[1] + direction[1];
-                // look for invadid points
+                // look for invalid points
                 if (row < 0 || col < 0 || row == n || col == m || // outside borders
                         matrix[row][col] < matrix[point[0]][point[1]] || // cant flow from lower height
                         ((state[point[0]][point[1]] | state[row][col]) == state[row][col])) {
