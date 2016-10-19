@@ -23,7 +23,7 @@ public class DecodeString {
         StringBuilder number = new StringBuilder();
         StringBuilder letters = new StringBuilder();
 
-        for (i = index; i < s.length(); i++) {
+        for (; i < s.length(); ++i) {
             char current = s.charAt(i);
             if (Character.isDigit(current)) {
                 number.append(current);
@@ -33,7 +33,7 @@ public class DecodeString {
             }
 
             if (current == '[') {
-                String result = dfs(s, i + 1);
+                String result = dfs(s, ++i);
                 for (int t = 0; t < Integer.valueOf(number.toString()); ++t) {
                     letters.append(result);
                 }
@@ -44,5 +44,10 @@ public class DecodeString {
         }
 
         return letters.toString();
+    }
+
+    public static void main(String[] args) {
+        DecodeString s = new DecodeString();
+        System.out.println(s.decodeString("3[a]2[b]"));
     }
 }
