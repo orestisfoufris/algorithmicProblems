@@ -15,7 +15,10 @@ public class GuessNumberHigherOrLowerII {
     private int minMax(int start, int end, int[][] dp) {
         if (dp[start][end] != 0) {
             return dp[start][end];
-        } else if (start >= end) {
+        }
+
+        // base cases
+        if (start >= end) {
             return 0;
         } else if (start >= end - 2) {
             return dp[start][end] = end - 1;
