@@ -42,7 +42,7 @@ public class IdentifyTheCelebrity {
             last = head;
 
             for (Integer node : adjacentList) {
-                if (!seen.contains(head)) {
+                if (head != node && !seen.contains(head)) {
                     queue.offer(node);
                 }
             }
@@ -52,16 +52,33 @@ public class IdentifyTheCelebrity {
         return last;
     }
 
+    // using two pointers
+    public static int findCelebrity(List<List<Boolean>> F) {
+        int a = 0;
+        int b = 1;
+
+        while (b < F.size()) {
+            if (F.get(a).get(b)) {
+                a = b++;
+            } else {
+                ++b;
+            }
+        }
+
+        return a;
+    }
 
     public static void main(String[] args) {
         List<List<Boolean>> F = new ArrayList<>();
-        List<Boolean> zero = Arrays.asList(false, true, true, true);
-        List<Boolean> one = Arrays.asList(false, false, true, true);
-        List<Boolean> two = Arrays.asList(false, false, false, false);
-        List<Boolean> three = Arrays.asList(false, false, true, false);
+        List<Boolean> zero = Arrays.asList(true, true, true, true);
+        List<Boolean> one = Arrays.asList(false, true, true, true);
+        List<Boolean> two = Arrays.asList(false, false, true, false);
+        List<Boolean> three = Arrays.asList(false, false, true, true);
 
         F.add(zero); F.add(one); F.add(two); F.add(three);
 
         System.out.println(findCelebrityBFS(F));
+        System.out.println(findCelebrity(F));
+
     }
 }
