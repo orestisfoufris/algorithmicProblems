@@ -11,32 +11,25 @@ public class ValidParentheses {
     public boolean isValid(String s) {
         Deque<Character> deque = new ArrayDeque<>();
 
-        if (s.isEmpty()) {
-            return true;
-        } else {
-            deque.push(s.charAt(0));
-        }
+        for (int i = 0; i < s.length(); ++i) {
+            if (deque.isEmpty() && (s.charAt(i) == ']' || s.charAt(i) == ')' || s.charAt(i) == '}')) {
+                return false;
+            }
 
-        for (int i = 1; i < s.length(); ++i) {
-            char curr = s.charAt(i);
-
-            if (curr == ')') {
-                Character c = deque.pollFirst();
-                if (c == null || !c.equals('(')) {
+            if (s.charAt(i) == ']') {
+                if (deque.pop() != '[') {
                     return false;
                 }
-            } else if (curr == ']') {
-                Character c = deque.pollFirst();
-                if (c == null || !c.equals('[')) {
+            } else if (s.charAt(i) == ')') {
+                if (deque.pop() != '(') {
                     return false;
                 }
-            } else if (curr == '}') {
-                Character c = deque.pollFirst();
-                if (c == null || !c.equals('{')) {
+            } else if (s.charAt(i) == '}') {
+                if (deque.pop() != '{') {
                     return false;
                 }
             } else {
-                deque.push(curr);
+                deque.push(s.charAt(i));
             }
         }
 
