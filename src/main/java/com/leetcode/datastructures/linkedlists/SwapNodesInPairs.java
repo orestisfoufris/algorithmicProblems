@@ -5,6 +5,7 @@ package com.leetcode.datastructures.linkedlists;
  */
 public class SwapNodesInPairs {
 
+    // 4ms
     public ListNode swapPairs(ListNode head) {
 
         if (head == null || head.next ==  null) {
@@ -28,6 +29,52 @@ public class SwapNodesInPairs {
         }
 
         return head;
+    }
+
+    // 5ms
+    public ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode start = head.next;
+        ListNode prev = null;
+
+        while (head != null && head.next != null) {
+            prev = head;
+
+            ListNode tNext = head.next.next;
+            ListNode tmp = head.next;
+
+            tmp.next = head;
+
+            head.next = tNext;
+            head = head.next;
+            if (head != null) {
+                prev.next = head.next;
+            }
+        }
+
+        if (head != null) {
+            prev.next = head;
+        }
+
+        return start;
+    }
+
+    // 6ms
+    public ListNode swapPairsRecursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode second = head.next;
+        ListNode third = second.next;
+
+        second.next = head;
+        head.next = swapPairsRecursive(third);
+
+        return second;
     }
 
 }
