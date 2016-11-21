@@ -13,7 +13,7 @@ public class DesignTwitter {
     private Map<Integer, TwitterUser> users;
 
     public DesignTwitter() {
-        users = new HashMap<Integer, TwitterUser>();
+        users = new HashMap<>();
     }
 
     /**
