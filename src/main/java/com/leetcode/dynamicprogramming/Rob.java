@@ -35,29 +35,26 @@ public class Rob {
         return temp;
     }
 
-    public int rob2(int[] nums) {
+    public int robBottomUp(int[] nums) {
+        int n = nums.length;
 
-        if(nums.length==0) {
+        if (n == 0) {
             return 0;
-        } else if(nums.length==1) {
+        } else if (n == 1) {
             return nums[0];
+        } else if (n == 2) {
+            return Math.max(nums[0], nums[1]);
+        } else {
+            int[] dp = new int[n + 1];
+            dp[0] = nums[0];
+            dp[1] = Math.max(nums[0], nums[1]);
+
+            for (int i = 2; i < n; ++i) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+
+            return dp[n - 1];
         }
-
-        int[] computed = new int[nums.length + 1];
-
-        computed[0] = nums[0];
-        computed[1] = Math.max(nums[0], nums[1]);
-
-        for (int i = 2; i < nums.length; ++i) {
-            computed[i] = Math.max(nums[i] + computed[i - 2], computed[i - 1]);
-        }
-
-        return computed[nums.length - 1];
     }
 
-    public static void main(String[] args) {
-        System.out.println(rob(new int[]{5, 4, 3, 3}));
-        System.out.println(rob(new int[]{2, 3, 1, 1}));
-        System.out.println(rob(new int[]{8, 4, 1, 2}));
-    }
 }
