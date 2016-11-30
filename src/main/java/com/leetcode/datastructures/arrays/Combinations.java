@@ -18,33 +18,20 @@ public class Combinations {
             return result;
         }
 
-        List<Integer> numbers = new ArrayList<>(n);
-
-        for (int i = 1; i <= n; ++i) {
-            numbers.add(i);
-        }
-
-        for (int i = 0; i < numbers.size(); ++i) {
-            backtrack(numbers, result, i, new ArrayList<>(2), k);
-        }
+        backtrack(result, new ArrayList<>(2), k, n, 1);
 
         return result;
     }
 
-    private static void backtrack(List<Integer> nums, List<List<Integer>> result,
-                           int start, List<Integer> temp, int k) {
-
-        if (start < nums.size()) {
-            temp.add(nums.get(start));
-
-            if (temp.size() == k) {
-                result.add(new ArrayList<>(temp));
+    private static void backtrack(List<List<Integer>> result, List<Integer> temp, int k, int n, int start) {
+        if (k == 0) {
+            result.add(new ArrayList<>(temp));
+        } else {
+            for (int i = start; i <= n + 1 - k; ++i) {
+                temp.add(i);
+                backtrack(result, temp, k - 1, n, i + 1);
+                temp.remove(temp.size() - 1);
             }
-
-            for (int i = start + 1; i < nums.size(); ++i) {
-                backtrack(nums, result, i, temp, k);
-            }
-            temp.remove(temp.size() - 1);
         }
     }
 }
