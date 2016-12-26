@@ -1,7 +1,5 @@
 package com.leetcode.datastructures.arrays;
 
-import java.util.Arrays;
-
 /**
  * https://leetcode.com/problems/product-of-array-except-self/
  * 23/10/2016.
