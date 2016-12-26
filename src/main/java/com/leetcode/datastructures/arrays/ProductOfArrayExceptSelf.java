@@ -18,7 +18,6 @@ public class ProductOfArrayExceptSelf {
         }
 
         int right = nums[n - 1];
-        System.out.println(Arrays.toString(output));
 
         for (int i = n - 2; i >= 0; --i) {
             output[i] = output[i] * right;
