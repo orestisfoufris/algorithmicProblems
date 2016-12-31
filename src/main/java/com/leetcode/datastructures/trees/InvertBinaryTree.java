@@ -27,4 +27,24 @@ public class InvertBinaryTree {
 
         return null;
     }
+
+    public TreeNode invertTreeAlternativeWay(TreeNode root) {
+        invert(root);
+
+        return root;
+    }
+
+    private void invert(TreeNode node) {
+        if (node != null) {
+            invert(node.left);
+            invert(node.right);
+
+            TreeNode left = node.left;
+            TreeNode right = node.right;
+
+            node.right = left;
+            node.left = right;
+
+        }
+    }
 }
