@@ -18,8 +18,17 @@ public class CountingBits {
         return count;
     }
 
-    public static void main(String[] args) {
-        CountingBits c = new CountingBits();
-        System.out.println(Arrays.toString(c.countBits(15)));
+    public int[] countBits2(int num) {
+        int[] dp = new int[num + 1];
+
+        for (int i = 1; i <= num; i++) {
+            if ((i & 1) == 1) {
+                dp[i] = dp[i / 2] + 1;
+            } else {
+                dp[i] = dp[i / 2];
+            }
+        }
+
+        return dp;
     }
 }
