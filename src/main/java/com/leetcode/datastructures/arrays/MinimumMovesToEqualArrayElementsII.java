@@ -1,3 +1,7 @@
+package com.leetcode.datastructures.arrays;
+
+import java.util.Arrays;
+
 public class MinimumMovesToEqualArrayElementsII  {
     public int minMoves2(int[] nums) {
         Arrays.sort(nums);
