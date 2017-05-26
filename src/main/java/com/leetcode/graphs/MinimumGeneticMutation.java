@@ -96,4 +96,53 @@ public class MinimumGeneticMutation {
         }
     }
 
+
+    public int minMutationAlternativeSolution(String start, String end, String[] bank) {
+        if (start.length() != end.length()) return -1;
+
+        Set<String> seen = new HashSet<>();
+        List<Character> validChars = Arrays.asList('A', 'C', 'G', 'T');
+        Set<String> bankSet = new HashSet<>();
+        Collections.addAll(bankSet, bank);
+
+        Deque<String> d = new ArrayDeque<>();
+        d.offer(start);
+        seen.add(start);
+        int level = 0;
+
+        while (!d.isEmpty()) {
+            int size = d.size();
+            while(size-- > 0) {
+                String s = d.pop();
+                if (s.equals(end)) {
+                    return level;
+                }
+
+                char[] current = s.toCharArray();
+                for (int i = 0; i < current.length; ++i) {
+                    char temp = current[i];
+
+                    for (char c : validChars) {
+                        current[i] = c;
+                        String mutated = new String(current);
+
+                        if (exists(mutated, bankSet) && !seen.contains(mutated)) {
+                            d.offer(mutated);
+                            seen.add(mutated);
+                        }
+                    }
+                    current[i] = temp;
+                }
+            }
+            level++;
+        }
+
+        return -1;
+
+    }
+
+    private boolean exists(String mutation, Set<String> validMutations) {
+        return validMutations.contains(mutation);
+    }
+
 }
