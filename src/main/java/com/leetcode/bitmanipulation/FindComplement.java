@@ -16,7 +16,6 @@ public class FindComplement {
             mask <<= 1;
         }
 
-        System.out.println(last);
         int temp = 0;
         mask = 1;
         for (int i = 0; i <= last; ++i) {

@@ -38,4 +38,25 @@ public class GuessNumberHigherOrLowerII {
         return dp[start][end] = min;
     }
 
+    public int getMoneyAmount2(int n) {
+        int[][] dp = new int[n + 1][n + 1];
+        return solve(1, n, dp);
+    }
+
+    private int solve(int start, int end, int[][] dp) {
+        if (start >= end) return 0;
+
+        if (dp[start][end] != 0) {
+            return dp[start][end];
+        }
+
+        int result = Integer.MAX_VALUE;
+
+        for (int i = start; i <= end; ++i) {
+            result = Math.min(result, i + Math.max(minMax(start, i - 1, dp), minMax(i + 1, end, dp)));
+        }
+
+        return dp[start][end] = result;
+    }
+
 }
