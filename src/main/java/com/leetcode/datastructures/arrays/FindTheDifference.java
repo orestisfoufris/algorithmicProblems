@@ -23,4 +23,9 @@ public class FindTheDifference {
 
         return b[b.length - 1];
     }
+
+    public char findTheDifference2(String s, String t) {
+        return (char) (s + t).chars().reduce(0, (c, d) -> c ^ d);
+    }
+
 }
