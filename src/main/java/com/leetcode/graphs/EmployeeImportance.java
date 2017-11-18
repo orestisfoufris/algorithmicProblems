@@ -44,5 +44,5 @@ public class EmployeeImportance {
         int importance;
         // the id of direct subordinates
         List<Integer> subordinates;
-    };
+    }
 }
