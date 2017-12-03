@@ -1,51 +1,39 @@
 package com.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * https://leetcode.com/problems/beautiful-arrangement/description/
  */
 public class BeautifulArrangement {
-  private int count = 0;
-    
+    private int count = 0;
+
     public int countArrangement(int N) {
-        // pre-computed
-        if (N == 12) return 4010;
-        if (N == 13) return 4237;
-        if (N == 14) return 10680;
-        if (N == 15) return 24679;
-        
-        int[] array = new int[N];
-        
-        for (int i = 0; i < N; ++i) {
-            array[i] = i + 1;
+        if (N == 0) {
+            return N;
         }
-        backtrack(0, array);
-        
+
+        int[] array = new int[N + 1];
+
+        for (int i = 0; i <= N; ++i) {
+            array[i] = i;
+        }
+
+        backtrack(1, array);
+
         return count;
-        
+
     }
-    
+
     private void backtrack(int start, int[] nums) {
         if (start == nums.length) {
-            boolean found = true;
-            for (int k = 0; k < nums.length; ++k) {
-                if (nums[k] % (k + 1) != 0 && (k + 1) % nums[k] != 0) {
-                    found = false;
-                    break;
-                }    
-            }
-            
-            if (found) {
-                count++;
-            }
-            
+            count++;
+            return;
         }
 
         for (int i = start; i < nums.length; ++i) {
             swap(i, start, nums);
-            backtrack(start + 1, nums);
+            if (nums[start] % start == 0 || start % nums[start] == 0) {
+                backtrack(start + 1, nums);
+            }
             swap(start, i, nums);
         }
 
