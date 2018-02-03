@@ -2,6 +2,9 @@ package com.leetcode.dynamicprogramming;
 
 import java.util.Arrays;
 
+/**
+ * https://leetcode.com/problems/min-cost-climbing-stairs/description/
+ */
 public class MinCostClimbingStairs {
 
     public int minCostClimbingStairs(int[] cost) {
