@@ -29,4 +29,16 @@ public class RepeatedSubstringPattern {
         return false;
     }
 
+
+    public boolean repeatedSubstringPattern2(String str) {
+        if (str == null || str.length() <= 1) {
+            return false;
+        }
+
+        String su = str + str;
+
+        su = su.substring(1, su.length() - 1);
+
+        return su.contains(str);
+    }
 }

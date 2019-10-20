@@ -1,11 +1,10 @@
 package com.codeforces.div2.A;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.regex.Matcher;
 
 public class ComplicatedGCD {
 

@@ -1,6 +1,6 @@
 package com.projectEuler;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.math.BigInteger;
 import java.util.Arrays;

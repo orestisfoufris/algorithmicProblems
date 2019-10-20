@@ -1,6 +1,6 @@
 package com.kattis;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.util.*;
 

@@ -1,6 +1,6 @@
 package com.codeforces.div2.A;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;

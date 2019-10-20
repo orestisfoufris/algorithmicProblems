@@ -6,8 +6,8 @@ package com.leetcode.datastructures.linkedlists;
 public class IntersectionOfTwoLists {
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode b = headB == null ? null : headB;
-        ListNode a = headA == null ? null : headA;
+        ListNode b = headB;
+        ListNode a = headA;
 
         if (a == null || b == null) {
             return null;

@@ -1,6 +1,6 @@
 package com.UVa.completesearch.recursivebacktracking;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.util.*;
 

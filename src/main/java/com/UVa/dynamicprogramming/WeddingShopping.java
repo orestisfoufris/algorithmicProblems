@@ -1,6 +1,6 @@
 package com.UVa.dynamicprogramming;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import java.io.*;
 import java.util.*;
 
